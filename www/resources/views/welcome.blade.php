@@ -108,7 +108,7 @@
                 
                 <div>
                   <h3>Фильтры</h3>
-                  <form action="/wtip/public/" method="GET">
+                  <form action="/" method="GET">
                       Название <input name="title" type="text" value="{{ isset($_GET['title'])?$_GET['title']:"" }}"/>
                       Дата публикации с 
                       <input name="published_start" type="datetime-local" value="{{ isset($_GET['published_start'])?$_GET['published_start']:"" }}" />
@@ -117,27 +117,27 @@
                       <input type="submit" value="отфильтровать" />
                     </form>
                 </div>
-                @php
-                  echo "<div id='newsContainer'>";
-                  $news = App\News::where('is_published', 1);
-                  if (isset($_GET['title']) && strlen($_GET['title'])>0) {
-                    $news = $news->where('title','LIKE',"%".
-                                       ($_GET['title'])."%");
-                  }
-                  if (isset($_GET['published_start']) && strlen($_GET['published_start'])>0) {
-                    $news = $news->where('date_published',">=",
-                                       ($_GET['published_start']))->whereNotNull("date_published");
-                  }
-                  if (isset($_GET['published_end']) && strlen($_GET['published_end'])>0) {
-                    $news = $news->where('date_published',"<",
-                    
-                                       ($_GET['published_end']))->whereNotNull("date_published");
-                  }
-                  $news = $news->orderBy('id')->limit(2)->get();
-                  foreach ($news as $news_item) {
+                <div id='newsContainer'>
+                    @php
+                        $news = App\News::where('is_published', 1);
+                        if (isset($_GET['title']) && strlen($_GET['title'])>0) {
+                          $news = $news->where('title','LIKE',"%".
+                                             ($_GET['title'])."%");
+                        }
+                        if (isset($_GET['published_start']) && strlen($_GET['published_start'])>0) {
+                          $news = $news->where('date_published',">=",
+                                             ($_GET['published_start']))->whereNotNull("date_published");
+                        }
+                        if (isset($_GET['published_end']) && strlen($_GET['published_end'])>0) {
+                          $news = $news->where('date_published',"<",
+                          
+                                             ($_GET['published_end']))->whereNotNull("date_published");
+                        }
+                        $news = $news->orderBy('id')->limit(2)->get();
+                        foreach ($news as $news_item) {
 
-                  }                  
-                @endphp
+                        }                  
+                      @endphp
                   
                   @each('news_item', $news, 'news_item')
                 </div>

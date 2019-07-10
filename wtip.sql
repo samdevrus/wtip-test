@@ -100,13 +100,13 @@ INSERT INTO `users` (`id`, `name`) VALUES
 -- Ограничения внешнего ключа сохраненных таблиц
 --
 
+COMMIT;
 --
 -- Ограничения внешнего ключа таблицы `news_authors`
 --
 ALTER TABLE `news_authors`
   ADD CONSTRAINT `news_authors_ibfk_1` FOREIGN KEY (`news_id`) REFERENCES `news` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `news_authors_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
