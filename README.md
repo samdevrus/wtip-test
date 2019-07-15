@@ -1,9 +1,12 @@
 # wtip
 Тестовый проект
+
 Первый проект на Laravel
 
 wtip.sql - скрипт создания БД с данными
+
 папка www - сам сайт на Laravel. данные для подключения к БД в файле .env
+
 https://samdevrus.000webhostapp.com
 
 Задание:
